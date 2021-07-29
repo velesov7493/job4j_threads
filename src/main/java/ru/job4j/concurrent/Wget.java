@@ -10,7 +10,7 @@ public class Wget {
                     Thread.sleep(1000);
                 }
             } catch (InterruptedException ex) {
-                System.out.println("Поток прогресса прерван!");
+                Thread.currentThread().interrupt();
             }
         });
         progressTask.start();
