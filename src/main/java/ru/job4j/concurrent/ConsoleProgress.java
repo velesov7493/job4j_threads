@@ -6,13 +6,12 @@ public class ConsoleProgress implements Runnable {
     public void run() {
         char[] indicator = {'-', '\\', '|', '/'};
         try {
-            for (int i = 0; i <= 100; i++) {
+            int i = 0;
+            while (!Thread.currentThread().isInterrupted() && i <= 100) {
                 int j = i % 4;
                 System.out.print("\rЗагрузка: " + indicator[j] + "[...]");
                 Thread.sleep(200);
-                if (Thread.currentThread().isInterrupted()) {
-                    break;
-                }
+                i++;
             }
             System.out.print("\rЗагрузка - [готово]");
         } catch (InterruptedException ex) {
