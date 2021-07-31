@@ -28,10 +28,9 @@ public class WgetSpeed implements Runnable {
 
     private TimeRead timedRead(InputStream in, byte[] buffer) throws IOException {
         long startTime = System.currentTimeMillis();
-        return new TimeRead(
-                in.read(buffer, 0, buffer.length),
-                (int) (System.currentTimeMillis() - startTime)
-        );
+        int bytes = in.read(buffer, 0, buffer.length);
+        int time = (int) (System.currentTimeMillis() - startTime);
+        return new TimeRead(bytes, time);
     }
 
     @Override
