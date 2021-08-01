@@ -54,7 +54,6 @@ public class WgetSpeed implements Runnable {
                 t = timedRead(in, dataBuffer);
             }
         } catch (IOException e) {
-            System.out.println("Ошибка ввода-вывода при скачивании файла: " + e.toString());
             e.printStackTrace();
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
