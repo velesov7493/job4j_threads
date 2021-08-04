@@ -49,7 +49,7 @@ public class UserStorage {
 
     public synchronized User findById(int id) {
         User u = users.get(id);
-        return new User(u.getId(), u.getAmount());
+        return u != null ? new User(u.getId(), u.getAmount()) : null;
     }
 
     public synchronized boolean transfer(int fromId, int toId, int amount) {
