@@ -43,4 +43,8 @@ public class SimpleBlockingQueue<T> implements BlockingQueue<T> {
         notify();
         return result;
     }
+
+    public synchronized boolean isEmpty() {
+        return queue.isEmpty();
+    }
 }

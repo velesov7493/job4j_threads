@@ -5,4 +5,6 @@ public interface BlockingQueue<T> {
     void offer(T value);
 
     T poll();
+
+    boolean isEmpty();
 }
