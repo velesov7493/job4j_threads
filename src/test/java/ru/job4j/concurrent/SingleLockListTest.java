@@ -61,9 +61,9 @@ public class SingleLockListTest {
         });
         first.start();
         second.start();
-        third.start();
         first.join();
         second.join();
+        third.start();
         third.join();
         Set<Integer> result = new LinkedHashSet<>();
         list.iterator().forEachRemaining(result::add);
