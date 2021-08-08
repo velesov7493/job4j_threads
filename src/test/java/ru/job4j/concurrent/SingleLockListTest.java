@@ -3,6 +3,7 @@ package ru.job4j.concurrent;
 import org.junit.Test;
 
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 import static org.hamcrest.core.Is.is;
@@ -20,7 +21,7 @@ public class SingleLockListTest {
         second.start();
         first.join();
         second.join();
-        Set<Integer> rsl = new TreeSet<>();
+        Set<Integer> rsl = new LinkedHashSet<>();
         list.iterator().forEachRemaining(rsl::add);
         assertThat(rsl, is(Set.of(1, 2)));
     }
@@ -64,7 +65,7 @@ public class SingleLockListTest {
         first.join();
         second.join();
         third.join();
-        Set<Integer> result = new TreeSet<>();
+        Set<Integer> result = new LinkedHashSet<>();
         list.iterator().forEachRemaining(result::add);
         assertThat(result, is(Set.of(1, 2, 3, 6, 7, 8, 9)));
     }
