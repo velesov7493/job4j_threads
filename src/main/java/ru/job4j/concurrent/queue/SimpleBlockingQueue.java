@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 public class SimpleBlockingQueue<T> implements BlockingQueue<T> {
 
     @GuardedBy("this")
-    private Queue<T> queue;
+    private final Queue<T> queue;
     private final int maxSize;
 
     public SimpleBlockingQueue(int aMaxSize) {
@@ -30,21 +30,17 @@ public class SimpleBlockingQueue<T> implements BlockingQueue<T> {
         }
     }
 
-    public void offer(T value) {
+    public synchronized void offer(T value) {
         lockByPredicate((q) -> q.size() >= maxSize);
-        synchronized (this) {
-            queue.offer(value);
-            notify();
-        }
+        queue.offer(value);
+        notify();
     }
 
-    public T poll() {
+    public synchronized T poll() {
         lockByPredicate(Collection::isEmpty);
         T result;
-        synchronized (this) {
-            result = queue.poll();
-            notify();
-        }
+        result = queue.poll();
+        notify();
         return result;
     }
 }
