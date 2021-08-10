@@ -1,4 +1,4 @@
-package ru.job4j.concurrent;
+package ru.job4j.concurrent.cas;
 
 import net.jcip.annotations.ThreadSafe;
 
