@@ -3,7 +3,7 @@ package ru.job4j.concurrent.pool;
 import ru.job4j.concurrent.queue.BlockingQueue;
 import ru.job4j.concurrent.queue.SimpleBlockingQueue;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ThreadPool  extends Thread {
@@ -14,7 +14,7 @@ public class ThreadPool  extends Thread {
 
     public ThreadPool() {
         maxThreads = Runtime.getRuntime().availableProcessors();
-        threads = new LinkedList<>();
+        threads = new ArrayList<>();
         tasks = new SimpleBlockingQueue<>(20);
         setPriority(Thread.MIN_PRIORITY);
     }
