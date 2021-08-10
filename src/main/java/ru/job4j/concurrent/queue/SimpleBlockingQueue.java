@@ -21,7 +21,7 @@ public class SimpleBlockingQueue<T> implements BlockingQueue<T> {
     }
 
     private synchronized void lockByPredicate(Predicate<Queue> condition) {
-        while (condition.test(queue)) {
+        while (!Thread.currentThread().isInterrupted() && condition.test(queue)) {
             try {
                 wait();
             } catch (InterruptedException ex) {

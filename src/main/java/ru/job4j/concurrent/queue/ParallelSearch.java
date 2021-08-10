@@ -15,13 +15,17 @@ public class ParallelSearch {
             }
         });
         final Thread consumer = new Thread(() -> {
-            for (int index = 0; index != 3; index++) {
-                System.out.println(queue.poll());
+            while (!Thread.currentThread().isInterrupted()) {
+                Integer val = queue.poll();
+                if (val == null) {
+                    continue;
+                }
+                System.out.println(val);
             }
         });
         producer.start();
         consumer.start();
         producer.join();
-        consumer.join();
+        consumer.interrupt();
     }
 }
