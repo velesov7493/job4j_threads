@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 
 public class EmailNotification {
 
-    private ExecutorService pool;
+    private final ExecutorService pool;
 
     public EmailNotification() {
         pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
