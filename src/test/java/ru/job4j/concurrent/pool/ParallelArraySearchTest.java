@@ -12,6 +12,7 @@ public class ParallelArraySearchTest {
 
     @Test
     public void whenSearch() {
+        User model = new User("Смирнова Светлана Николаевна", "iv1006@gmail.com");
         User[] users = {
                 new User("Иванов Иван Иванович", "iv1000@yandex.ru"),
                 new User("Петрова Мария Павловна", "iv1001@yandex.ru"),
@@ -19,7 +20,7 @@ public class ParallelArraySearchTest {
                 new User("Макаренко Светлана Павловна", "iv1003@yandex.ru"),
                 new User("Макаренко Леонид Иванович", "iv1004@yandex.ru"),
                 new User("Курицына Галина Николаевна", "iv1005@yandex.ru"),
-                new User("Смирнова Светлана Николаевна", "iv1006@gmail.com"),
+                model,
                 new User("Коробов Валерий Юрьевич", "iv1007@yandex.ru"),
                 new User("Скосорева Зинаида Анатольевна", "iv1008@yandex.ru"),
                 new User("Метлина Светлана Анатольевна", "iv1009@yandex.ru"),
@@ -30,11 +31,7 @@ public class ParallelArraySearchTest {
                 new User("Стрелкова Марфа Романовна", "iv1014@yandex.ru")
         };
         ForkJoinPool fjp = new ForkJoinPool();
-        List<Integer> result = fjp.invoke(
-                new ParallelArraySearch<>(
-                        users, (u) -> u.getEmail().contains("gmail"), 0, users.length
-                )
-        );
-        assertThat(result, is(List.of(6, 10, 11)));
+        Integer result = fjp.invoke(new ParallelArraySearch<>(users, model, 0, users.length));
+        assertThat(result, is(6));
     }
 }
