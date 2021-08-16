@@ -57,7 +57,6 @@ public class ParallelArraySearch<T> extends RecursiveTask<Integer> {
             if (tmpResult != null && result == null) {
                 result = tmpResult;
             }
-
         }
         return result;
     }
