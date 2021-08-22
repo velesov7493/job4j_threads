@@ -1,4 +1,4 @@
-package ru.job4j.concurrent;
+package ru.job4j.concurrent.sharedres;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
